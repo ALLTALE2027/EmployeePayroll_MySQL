@@ -1,8 +1,8 @@
 import express from 'express';
 import * as userController from '../controllers/user.controller';
-import { newUserValidator } from '../validators/user.validator';
+import { newUserValidator, loginValidator } from '../validators/user.validator';
 import { userAuth } from '../middlewares/auth.middleware';
-
+import * as employeeController from '../controllers/employeeDetails.controller';
 const router = express.Router();
 
 //route to get all users
@@ -19,5 +19,8 @@ router.put('/:id', userController.updateUser);
 
 //route to delete a single user by their user id
 router.delete('/:id', userController.deleteUser);
+
+//user login
+router.post('/login', loginValidator, userController.login);
 
 export default router;
